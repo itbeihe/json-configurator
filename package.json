@@ -1,0 +1,23 @@
+{
+  "name": "json-configurator",
+  "version": "0.0.1",
+  "description": "a json configurator",
+  "main": "json-configurator.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/itbeihe/json-configurator.git"
+  },
+  "keywords": [
+    "json",
+    "configurator"
+  ],
+  "author": "beihe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/itbeihe/json-configurator/issues"
+  },
+  "homepage": "https://github.com/itbeihe/json-configurator"
+}
