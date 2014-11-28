@@ -19,5 +19,11 @@
   "bugs": {
     "url": "https://github.com/itbeihe/json-configurator/issues"
   },
-  "homepage": "https://github.com/itbeihe/json-configurator"
+  "homepage": "https://github.com/itbeihe/json-configurator",
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-qunit": "^1.0.0",
+    "node-qunit-phantomjs": "^1.0.0",
+    "qunitjs": "^1.15.0"
+  }
 }

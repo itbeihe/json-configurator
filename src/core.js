@@ -7,30 +7,18 @@ var class2type = {};
 var toString = class2type.toString;
 //var hasOwn = class2type.hasOwnProperty;
 
-function isArraylike( obj ) {
-  var length = obj.length,
-    type = JsonC.type( obj );
-
-  if ( type === "function" ) {
-    return false;
-  }
-
-  if ( obj.nodeType === 1 && length ) {
-    return true;
-  }
-
-  return type === "array" || length === 0 ||
-    typeof length === "number" && length > 0 && ( length - 1 ) in obj;
+function isArray( obj ) {
+  return toString.call(obj) === '[object Array]';
 }
 
 JsonC.each = function( obj, callback, args ) {
   var value,
     i = 0,
     length = obj.length,
-    isArray = isArraylike( obj );
+    flag = isArray( obj );
 
   if ( args ) {
-    if ( isArray ) {
+    if ( flag ) {
       for ( ; i < length; i++ ) {
         value = callback.apply( obj[ i ], args );
 
@@ -50,7 +38,7 @@ JsonC.each = function( obj, callback, args ) {
 
     // A special, fast, case for the most common use of each
   } else {
-    if ( isArray ) {
+    if ( flag ) {
       for ( ; i < length; i++ ) {
         value = callback.call( obj[ i ], i, obj[ i ] );
 
@@ -149,7 +137,7 @@ JsonC.inherit = function(baseClass,prop){
 
 // 继承方法 来自jquery
 JsonC.extend = function() {
-  var src, copyIsArray, copy, name, options, clone,
+  var src, copyflag, copy, name, options, clone,
     target = arguments[0] || {},
     i = 1,
     length = arguments.length,
@@ -189,10 +177,10 @@ JsonC.extend = function() {
         }
 
         // Recurse if we're merging plain objects or arrays
-        if ( deep && copy && ( JsonC.isPlainObject(copy) || (copyIsArray = JsonC.isArray(copy)) ) ) {
-          if ( copyIsArray ) {
-            copyIsArray = false;
-            clone = src && JsonC.isArray(src) ? src : [];
+        if ( deep && copy && ( JsonC.isPlainObject(copy) || (copyflag = JsonC.flag(copy)) ) ) {
+          if ( copyflag ) {
+            copyflag = false;
+            clone = src && JsonC.flag(src) ? src : [];
 
           } else {
             clone = src && JsonC.isPlainObject(src) ? src : {};
