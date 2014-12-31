@@ -1,3 +1,4 @@
+
 var JsonC = {},
     _JC = window.JC;
   window.JC = JsonC;
@@ -5,23 +6,16 @@ var JsonC = {},
 var class2type = {};
 
 var toString = class2type.toString;
-//var hasOwn = class2type.hasOwnProperty;
-
-function isArray( obj ) {
-  return toString.call(obj) === '[object Array]';
-}
 
 JsonC.each = function( obj, callback, args ) {
   var value,
     i = 0,
-    length = obj.length,
-    flag = isArray( obj );
+    length = obj.length;
 
-  if ( args ) {
-    if ( flag ) {
+  if (args) {
+    if ( toString.call(obj) === '[object Array]' ) {
       for ( ; i < length; i++ ) {
-        value = callback.apply( obj[ i ], args );
-
+        value = callback.apply( obj[i], args );
         if ( value === false ) {
           break;
         }
@@ -29,7 +23,6 @@ JsonC.each = function( obj, callback, args ) {
     } else {
       for ( i in obj ) {
         value = callback.apply( obj[ i ], args );
-
         if ( value === false ) {
           break;
         }
@@ -38,7 +31,7 @@ JsonC.each = function( obj, callback, args ) {
 
     // A special, fast, case for the most common use of each
   } else {
-    if ( flag ) {
+    if ( toString.call(obj) === '[object Array]' ) {
       for ( ; i < length; i++ ) {
         value = callback.call( obj[ i ], i, obj[ i ] );
 

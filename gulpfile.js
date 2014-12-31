@@ -5,20 +5,20 @@ var gulp = require('gulp'),
 gulp.task('test', function(cb) {
   return gulp.src('./tests/core-test.html')
     .pipe(qunit({
-      'phantomjs-options': ['--ssl-protocol=any']
-
     }));
   //qunit('./tests/core-test.html');
 });
 
 
-
-
-gulp.task('test2', function(){
-  console.log('default');
-  qunit('./tests/core-test.html');
+gulp.task('test1', function(cb) {
+  return gulp.src('./tests/ok.html')
+    .pipe(qunit({
+      'phantomjs-options': ['--ssl-protocol=any']
+    }));
+  //qunit('./tests/core-test.html');
 });
 
-gulp.task('default',['test','test2'], function(){
+
+gulp.task('default',['test','test1'], function(){
   console.log('default');
 });
