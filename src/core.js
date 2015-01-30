@@ -57,6 +57,30 @@ JsonC.each("Boolean Number String Function Array Date RegExp Object Error".split
   class2type[ "[object " + name + "]" ] = name.toLowerCase();
 });
 
+JsonC.isWindow = function( obj ) {
+  return obj != null && obj == obj.window;
+};
+
+JsonC.isPlainObject = function( obj ) {
+  if ( !obj || JsonC.type(obj) !== "object" || obj.nodeType || JsonC.isWindow( obj ) ) {
+    return false;
+  }
+
+  try {
+    if ( obj.constructor &&
+        !Object.prototype.hasOwnProperty.call(obj, "constructor") &&
+        !Object.prototype.hasOwnProperty.call(obj.constructor.prototype, "isPrototypeOf") ) {
+      return false;
+    }
+  } catch ( e ) {
+    return false;
+  }
+
+  var key;
+  for ( key in obj ) {}
+
+  return key === undefined || Object.prototype.hasOwnProperty.call( obj, key );
+}
 
 // 防止变量冲突
 JsonC.noConflict = function( deep ) {
@@ -90,6 +114,10 @@ JsonC.type = function( obj ) {
 JsonC.isFunction = function( obj ) {
   return JsonC.type(obj) === "function";
 };
+JsonC.isArray = function( obj ) {
+  return JsonC.type(obj) === "array";
+};
+
 
 // 创建对象方法
 JsonC.create = function(prop){
@@ -128,13 +156,13 @@ JsonC.inherit = function(baseClass,prop){
   return F;
 };
 
-// 继承方法 来自jquery
+// 继承方法 来自JsonC
 JsonC.extend = function() {
-  var src, copyflag, copy, name, options, clone,
-    target = arguments[0] || {},
-    i = 1,
-    length = arguments.length,
-    deep = false;
+  var src, copyIsArray, copy, name, options, clone,
+      target = arguments[0] || {},
+      i = 1,
+      length = arguments.length,
+      deep = false;
 
   // Handle a deep copy situation
   if ( typeof target === "boolean" ) {
@@ -170,10 +198,10 @@ JsonC.extend = function() {
         }
 
         // Recurse if we're merging plain objects or arrays
-        if ( deep && copy && ( JsonC.isPlainObject(copy) || (copyflag = JsonC.flag(copy)) ) ) {
-          if ( copyflag ) {
-            copyflag = false;
-            clone = src && JsonC.flag(src) ? src : [];
+        if ( deep && copy && ( JsonC.isPlainObject(copy) || (copyIsArray = JsonC.isArray(copy)) ) ) {
+          if ( copyIsArray ) {
+            copyIsArray = false;
+            clone = src && JsonC.isArray(src) ? src : [];
 
           } else {
             clone = src && JsonC.isPlainObject(src) ? src : {};

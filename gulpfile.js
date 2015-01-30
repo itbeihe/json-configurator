@@ -22,3 +22,7 @@ gulp.task('test1', function(cb) {
 gulp.task('default',['test','test1'], function(){
   console.log('default');
 });
+
+gulp.task('build',function(){
+  gulp.src('').pipe()
+})

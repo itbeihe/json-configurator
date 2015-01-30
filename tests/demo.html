@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../src/core.js"></script>
+    <script src="../src/fields/base-field.js"></script>
+    <script src="../src/fields/input-field.js"></script>
+    <script src="../src/fields/object-filed.js"></script>
+    <script src="../src/configurator.js"></script>
+</head>
+<body>
+<textarea name="" id="dataTextArea" cols="30" rows="10">
+    {"_rid":45,"usemonitors":"MotuImg_destroy MotuImg_refresh MotuImg_resize MotuImg_move","rule":{"dynamic":false,"seq":"first","width":{"gte":280},"height":{"gte":200}},"conf":{"trackType":"ut|pagechoice","trackConf":"OUTPUT_LOG_TRIGGER_URL_2_REPLACE","PCAD_GEO_2_REPLACE":"PCAD_GEO_2_REPLACE","pcTrackLinks":{"label_imp":"OUTPUT_LOG_URL_2_REPLACE"},"utTrackLink":"http://test.com","imgRefreshTrack":true,"positionStyle":{"layerAreaStyle":"corner","layerCornerDir":"left","barAreaStyle":"vt"},"layer":{"showDelay":100,"hideDelay":500},"manualDisplay":{"type":"default"},"autoDisplay":{"type":"inScreen","times":9999999,"rangeHours":24,"duration":5000,"perpages":1,"hideDelay":5000},"apps":[{"_namespace":"Motu.apps.Combo","breath":false,"btnSize":"small","isDefaultApp":false,"duration":5000,"conf":{"width":250,"height":300,"apps":[{"_namespace":"Motu.apps.WindowAd","breath":false,"btnSize":"small","isDefaultApp":false,"duration":5000,"conf":{"width":250,"height":150,"type":"img","src":"http://img.xiami.net/images/album/img77/2177/17150681891415095732_2.jpg","link":"http://test.com"}},{"_namespace":"Motu.apps.Form","breath":false,"btnSize":"small","isDefaultApp":false,"duration":5000,"conf":{"namespace":"Motu.forms.Custom","width":250,"height":300,"param":{"useExtraConfig":"Motu.confs.ConerBenzForm","submitBtn":{"uiType":"red","text":"提 交"}},"_namespace":"Motu.forms.Custom"}}]}},{"_namespace":"Motu.apps.Combo","breath":false,"btnSize":"small","isDefaultApp":false,"duration":5000,"conf":{"width":250,"height":350,"apps":[{"_namespace":"Motu.apps.News","breath":false,"btnSize":"small","isDefaultApp":false,"duration":5000,"conf":{"ad":[{"channel":"hello1","title":"hsdafsdlfa","link":"http://asdfj.com"},{"channel":"hello2","title":"hsdaklfasjkld","link":"http://asdfj.com"}],"count":{"lte":3}}},{"_namespace":"Motu.apps.Article","breath":false,"btnSize":"small","isDefaultApp":false,"duration":5000,"conf":{"width":250,"articles":[{"title":"sadfas","link":"http://asdf.com","text":"sadf","img":"http://asdf.com"},{"title":"link2","link":"http://asdfj.com","text":"aslfklsad","img":"http://asdfj.com"}]}}]}}],"dsTrackAccount":"dstest"},"_namespace":"Motu.std.widgets.Bizbar","positions":{"at":"right top","my":"left top","offset":"1 0","mode":"content"},"id":30,"name":"Motu.std.widgets.Bizbar"}
+</textarea>
+<script type="text/javascript">
+    var cone = jsonConfigurator({
+        target:'#dataTextArea',
+        cellConf:window.JCTPL?window.JCTPL['bizTpl']:{}
+    });
+
+</script>
+</body>
+</html>
